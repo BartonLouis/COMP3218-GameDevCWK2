@@ -14,7 +14,6 @@ public class NPC1 : NPCCharacter
     }
 
     private void EventHeppened(StoryEngine.EventType eventType) {
-        Debug.Log("Switching to Dialogue 2");
         if (eventType == StoryEngine.EventType.TestEvent) {
             SetDialogue(d2);
         }

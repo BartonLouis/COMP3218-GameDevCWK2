@@ -10,21 +10,21 @@ public class NPCCharacter : NPCBaseClass
 
     private void Update() {
         if (canInteract && Input.GetButtonDown("Interact")) {
-            Debug.Log("Here2");
             TriggerDialogue();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            Debug.Log("Here1");
             canInteract = true;
+            InteractIcon.current.Bind(this.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             canInteract = false;
+            InteractIcon.current.UnBind();
         }
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NPC1 : NPCCharacter
 {
-
     public Dialogue d1;
     public Dialogue d2;
 

@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
     public static playerMovement current;
     public CharacterController2D controller;
     public Animator animator;
+
+    public AudioSource landAudio;
+    public AudioSource backgroundMusic;
+
+    public int levelToLoad = 1;
 
     public float runSpeed = 40f;
 
@@ -19,7 +25,11 @@ public class playerMovement : MonoBehaviour
     private bool jumpedThisUpdate = false;
     private bool canHide = false;
     private bool hidden = false;
-
+    
+    void Start()
+    {
+        backgroundMusic.Play();
+    }
 
     // Update is called once per frame
     void Update()
@@ -58,6 +68,7 @@ public class playerMovement : MonoBehaviour
     public void OnLanding() {
         animator.SetBool("Jump", false);
         jump = false;
+        landAudio.Play();
     }
 
     public void OnJump() {
@@ -76,5 +87,11 @@ public class playerMovement : MonoBehaviour
         this.canHide = canHide;
     }
 
+    void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.CompareTag("LoadNextScene")){
+            //SceneManager.LoadScene(1);
+            Application.LoadLevel(levelToLoad);
+        } 
+    }
 
 }

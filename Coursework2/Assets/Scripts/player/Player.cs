@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public static Player current;
     public CharacterController2D controller;
     public Animator animator;
+    public BoxCollider2D attackCollider;
 
     public AudioSource landAudio;
     public AudioSource backgroundMusic;
@@ -26,12 +27,37 @@ public class Player : MonoBehaviour
     private bool grounded = true;
     private bool attacking = false;
     private bool jumpedThisUpdate = false;
-    private bool canHide = false;
+    private bool hideableObjectClose = false;
     private bool hidden = false;
+
+    private bool canDoubleJump = false;
+    private bool canAttack = false;
+    private bool canWallClimb = false;
+    private bool canHide = false;
     
     void Start()
     {
         backgroundMusic.Play();
+        ViolentMode();
+        attackCollider.enabled = false;
+    }
+
+    public void PacifistMode() {
+        Debug.Log("Going Pacifist Mode");
+        canDoubleJump = false;
+        canAttack = false;
+        canWallClimb = true;
+        canHide = true;
+        controller.changeSettings(canDoubleJump, canWallClimb);
+    }
+
+    public void ViolentMode() {
+        Debug.Log("Going Violent Mode");
+        canDoubleJump = true;
+        canAttack = true;
+        canWallClimb = false;
+        canHide = false;
+        controller.changeSettings(canDoubleJump, canWallClimb);
     }
 
     // Update is called once per frame
@@ -43,7 +69,7 @@ public class Player : MonoBehaviour
             } else {
                 horizontal = 0f;
             }
-            if (Input.GetButtonDown("Attack")) {
+            if (canAttack && Input.GetButtonDown("Attack")) {
                 horizontal = 0f;
                 attacking = true;
                 animator.SetBool("Attacking", true);
@@ -62,7 +88,7 @@ public class Player : MonoBehaviour
             jumpedThisUpdate = false;
         }
 
-        if (canHide && Input.GetButtonDown("Interact") && !hidden) {
+        if (canHide && hideableObjectClose && Input.GetButtonDown("Interact") && !hidden) {
             hidden = true;
             animator.SetBool("Hiding", true);
         } else if (Input.GetButtonDown("Interact") && hidden) {
@@ -97,16 +123,18 @@ public class Player : MonoBehaviour
     }
 
     public void SetHiding(bool canHide) {
-        this.canHide = canHide;
+        this.hideableObjectClose = canHide;
     }
 
     public void OnAttackStart() {
         attackAudio.Play();
+        attackCollider.enabled = true;
     }
 
     public void OnAttackFinish() {
         attacking = false;
         animator.SetBool("Attacking", false);
+        attackCollider.enabled = false;
     }
 
     void OnCollisionEnter2D(Collision2D other){

@@ -83,6 +83,15 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
+	public void changeSettings(bool canDoubleJump, bool canWallClimb) {
+		if (canDoubleJump) {
+			m_NumberOfJumps = 2;
+		} else {
+			m_NumberOfJumps = 1;
+		}
+		m_CanClimb = canWallClimb;
+	}
+
 
 	public void Move(float move, bool jump, bool jumpedThisUpdate) {
 
@@ -126,7 +135,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	private void Flip() {
+	public void Flip() {
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
@@ -134,5 +143,17 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	public void FaceLeft() {
+		if (m_FacingRight) {
+			Flip();
+		}
+	}
+
+	public void FaceRight() {
+		if (!m_FacingRight) {
+			Flip();
+		}
 	}
 }

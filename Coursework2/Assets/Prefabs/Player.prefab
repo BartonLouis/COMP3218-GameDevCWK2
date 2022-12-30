@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5092187283346214309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3978950069203145541}
+  - component: {fileID: 8770290211019246337}
+  m_Layer: 7
+  m_Name: AttackHitBox
+  m_TagString: Attack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3978950069203145541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092187283346214309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6151827955064616835}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8770290211019246337
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092187283346214309}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.3, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.25, y: 0.38}
+  m_EdgeRadius: 0
 --- !u!1 &6151827953908525381
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +171,7 @@ GameObject:
   - component: {fileID: 412441120329182034}
   - component: {fileID: 2090331459179989674}
   - component: {fileID: 6670628381156341718}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -135,6 +193,7 @@ Transform:
   - {fileID: 6151827953908525380}
   - {fileID: 6151827953949896864}
   - {fileID: 6151827954979520902}
+  - {fileID: 3978950069203145541}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -755,6 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6151827955064616833}
   animator: {fileID: 6151827955064616842}
+  attackCollider: {fileID: 8770290211019246337}
   landAudio: {fileID: 412441120329182034}
   backgroundMusic: {fileID: 798123761741960523}
   attackAudio: {fileID: 2090331459179989674}

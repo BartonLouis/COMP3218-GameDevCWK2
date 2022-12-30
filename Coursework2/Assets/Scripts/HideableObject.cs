@@ -21,14 +21,14 @@ public class HideableObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            playerMovement.current.SetHiding(true);
+            Player.current.SetHiding(true);
             InteractIcon.current.Bind(this.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            playerMovement.current.SetHiding(false);
+            Player.current.SetHiding(false);
             InteractIcon.current.UnBind();
         }
     }

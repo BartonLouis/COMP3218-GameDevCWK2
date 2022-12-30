@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class playerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public static playerMovement current;
+    public static Player current;
     public CharacterController2D controller;
     public Animator animator;
 
     public AudioSource landAudio;
     public AudioSource backgroundMusic;
+    public AudioSource attackAudio;
 
     public int levelToLoad = 1;
 
@@ -22,6 +23,8 @@ public class playerMovement : MonoBehaviour
 
     private float horizontal = 0f;
     private bool jump = false;
+    private bool grounded = true;
+    private bool attacking = false;
     private bool jumpedThisUpdate = false;
     private bool canHide = false;
     private bool hidden = false;
@@ -35,9 +38,16 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         if (!hidden) {
-            horizontal = Input.GetAxisRaw("Horizontal") * runSpeed;
-            animator.SetFloat("Speed", Mathf.Abs(horizontal));
-
+            if (!attacking || !grounded) {
+                horizontal = Input.GetAxisRaw("Horizontal") * runSpeed;
+            } else {
+                horizontal = 0f;
+            }
+            if (Input.GetButtonDown("Attack")) {
+                horizontal = 0f;
+                attacking = true;
+                animator.SetBool("Attacking", true);
+            }
             if (Input.GetButtonDown("Jump")) {
                 jump = true;
                 jumpedThisUpdate = true;
@@ -45,6 +55,7 @@ public class playerMovement : MonoBehaviour
             } else if (Input.GetButtonUp("Jump")) {
                 jump = false;
             }
+            animator.SetFloat("Speed", Mathf.Abs(horizontal));
         } else {
             horizontal = 0f;
             jump = false;
@@ -68,10 +79,12 @@ public class playerMovement : MonoBehaviour
     public void OnLanding() {
         animator.SetBool("Jump", false);
         jump = false;
+        grounded = true;
         landAudio.Play();
     }
 
     public void OnJump() {
+        grounded = false;
         animator.SetBool("Jump", true);
     }
 
@@ -87,10 +100,19 @@ public class playerMovement : MonoBehaviour
         this.canHide = canHide;
     }
 
+    public void OnAttackStart() {
+        attackAudio.Play();
+    }
+
+    public void OnAttackFinish() {
+        attacking = false;
+        animator.SetBool("Attacking", false);
+    }
+
     void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.CompareTag("LoadNextScene")){
             //SceneManager.LoadScene(1);
-            Application.LoadLevel(levelToLoad);
+            SceneManager.LoadScene(levelToLoad);
         } 
     }
 

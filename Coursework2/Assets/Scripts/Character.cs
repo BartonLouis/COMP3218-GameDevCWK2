@@ -10,21 +10,39 @@ public class Character : MonoBehaviour
     public CharacterController2D controller;
     public Transform groundAheadCheck;
     public Transform castPoint;
+    public Transform wallAheadCheck;
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
+    public GameObject healthBarPrefab;
+    public int maxHealth = 100;
+    public int health;
 
 
-    const float groundRadius = .2f;
+    protected const float groundRadius = .2f;
     protected Transform target;
-    private float direction = 1f;
-    private bool chasing = false;
-    private bool reached = false;
+    protected float direction = 1f;
+    protected bool chasing = false;
+    protected bool reached = false;
+
+    protected HealthBar healthBar;
 
 
     // Start is called before the first frame update
     void Start()
     {
         target = Player.current.transform;
+        health = maxHealth;
+        GameObject worldCanvas = GameObject.Find("WorldCanvas");
+        healthBar = Instantiate(healthBarPrefab, worldCanvas.transform).GetComponent<HealthBar>();
+        healthBar.SetMaxHealth(health);
+    }
+
+    public void Damage(int amount) {
+        health -= amount;
+        if (health < 0) {
+            health = 0;
+        }
+        healthBar.SetHealth(health);
     }
 
     private void Update() {
@@ -39,6 +57,7 @@ public class Character : MonoBehaviour
             chasing = false;
             StopChasingTarget();
         }
+        healthBar.SetPosition(transform.position);
     }
 
     private bool CanSeeTarget() {
@@ -53,11 +72,11 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    void onTargetReached() {
+    protected virtual void OnTargetReached() {
     
     }
 
-    private void ChaseTarget() {
+    protected virtual void ChaseTarget() {
         // Turn to face same direction
         if (target.position.x < transform.position.x) {
             controller.FaceLeft();
@@ -68,19 +87,20 @@ public class Character : MonoBehaviour
         }
         float distance = Mathf.Abs(target.position.x - transform.position.x);
         if (distance < targetDistance) {
-            onTargetReached();
+            OnTargetReached();
             reached = true;
         }
         // Check that can move
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundAheadCheck.position, groundRadius, whatIsGround);
-        if (colliders.Length > 0) {
+        Collider2D[] colliders2 = Physics2D.OverlapCircleAll(wallAheadCheck.position, groundRadius, whatIsGround);
+        if (colliders.Length > 0 && colliders2.Length == 0) {
             chasing = true;
         } else {
             StopChasingTarget();
         }
     }
 
-    private void StopChasingTarget() {
+    protected virtual void StopChasingTarget() {
         chasing = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundAheadCheck.position, groundRadius, whatIsGround);
         if (colliders.Length == 0) {

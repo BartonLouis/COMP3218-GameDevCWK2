@@ -16,6 +16,7 @@ public class CharacterController2D : MonoBehaviour
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	const float k_ClimbableRadius = .2f; // Radius of the overlap circle to determine if able to climb
 	private bool m_Grounded;            // Whether or not the player is grounded.
+	private bool m_IsAllowedToClimb = true; // Whether or not the player has the ability to climb
 	private bool m_CanClimb;            // Whether or not the player can climb
 	private bool m_IsClimbing;
 	private Rigidbody2D m_Rigidbody2D;
@@ -89,7 +90,8 @@ public class CharacterController2D : MonoBehaviour
 		} else {
 			m_NumberOfJumps = 1;
 		}
-		m_CanClimb = canWallClimb;
+		jumpsRemaining = m_NumberOfJumps;
+		m_IsAllowedToClimb = canWallClimb;
 	}
 
 
@@ -115,7 +117,7 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 
-		if (m_CanClimb && jump) {
+		if (m_IsAllowedToClimb && m_CanClimb && jump) {
 			if (!m_IsClimbing)
 				OnClimbStartEvent.Invoke();
 			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_ClimbSpeed);

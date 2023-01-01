@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,7 +15,11 @@ public class Player : MonoBehaviour
     public AudioSource backgroundMusic;
     public AudioSource attackAudio;
 
+    public int maxHealth = 100;
+    public int health = 0;
     public int levelToLoad = 1;
+
+    public HealthBar healthBar;
 
     public float runSpeed = 40f;
 
@@ -40,6 +45,8 @@ public class Player : MonoBehaviour
         backgroundMusic.Play();
         ViolentMode();
         attackCollider.enabled = false;
+        health = maxHealth;
+        healthBar.SetMaxHealth(health);
     }
 
     public void PacifistMode() {
@@ -60,9 +67,43 @@ public class Player : MonoBehaviour
         controller.changeSettings(canDoubleJump, canWallClimb);
     }
 
+    public void Damage(int amount) {
+        health -= amount;
+        if (health < 0) {
+            health = 0;
+        }
+        if (health == 0) {
+            OnDeath();
+        }
+        healthBar.SetHealth(health);
+        animator.SetBool("GettingHit", true);
+    }
+
+    private void OnDeath() {
+        animator.SetBool("Death", true);
+        SceneController.current.PlayerDied();
+    }
+
+    private void DeathAnimationComplete() {
+        animator.SetBool("Dead", true);
+    }
+
+    public void StopGettingHit() {
+        animator.SetBool("GettingHit", false);
+        if (health == 0) {
+            animator.SetBool("Death", true);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            Damage(10);
+        }
+        if (health == 0) {
+            return;
+        }
         if (!hidden) {
             if (!attacking || !grounded) {
                 horizontal = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -95,11 +136,17 @@ public class Player : MonoBehaviour
             hidden = false;
             animator.SetBool("Hiding", false);
         }
+
+        healthBar.SetPosition(transform.position);
     }
 
     private void FixedUpdate() {
-        controller.Move(horizontal * Time.fixedDeltaTime, jump, jumpedThisUpdate);
-        jumpedThisUpdate = false;
+        if (health > 0) {
+            controller.Move(horizontal * Time.fixedDeltaTime, jump, jumpedThisUpdate);
+            jumpedThisUpdate = false;
+        } else {
+            controller.Move(0, false, false);
+        }
     }
 
     public void OnLanding() {

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - LoadNextScene
   - Attack
+  - LoadForest
+  - LoadVillage
+  - LoadCastle
   layers:
   - Default
   - TransparentFX

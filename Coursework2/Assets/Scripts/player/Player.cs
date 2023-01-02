@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         backgroundMusic.Play();
-        ViolentMode();
+        //ViolentMode();
+        PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
         healthBar.SetMaxHealth(health);
@@ -153,7 +154,7 @@ public class Player : MonoBehaviour
         animator.SetBool("Jump", false);
         jump = false;
         grounded = true;
-        landAudio.Play();
+        //landAudio.Play();
     }
 
     public void OnJump() {
@@ -185,10 +186,22 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.CompareTag("LoadNextScene")){
+        //if(other.gameObject.CompareTag("LoadNextScene")){
             //SceneManager.LoadScene(1);
-            SceneManager.LoadScene(levelToLoad);
-        } 
+            //SceneManager.LoadScene(levelToLoad);
+        //} 
+        if(other.gameObject.CompareTag("LoadForest")){
+            //SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
+        }
+        if(other.gameObject.CompareTag("LoadVillage")){
+            //SceneManager.LoadScene(1);
+            SceneManager.LoadScene(1);
+        }
+        if(other.gameObject.CompareTag("LoadCastle")){
+            //SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
+        }
     }
 
 }

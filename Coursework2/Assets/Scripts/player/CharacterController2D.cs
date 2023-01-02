@@ -32,8 +32,6 @@ public class CharacterController2D : MonoBehaviour
 	public UnityEvent OnClimbStartEvent;
 	public UnityEvent OnClimbStopEvent;
 
-	public AudioSource walkAudio;
-
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool>
 	{

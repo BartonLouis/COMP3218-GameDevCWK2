@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
     public float runSpeed = 40f;
 
+    public GameObject pacifistTutorial;
+    public GameObject violentTutorial;
+
     public float healRate = 10;
     public float timeToHealStart = 5f;
 
@@ -52,8 +55,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         backgroundMusic.Play();
-        //ViolentMode();
-        PacifistMode();
+        ViolentMode();
+        //PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
         healthBar.SetMaxHealth(Mathf.FloorToInt(health));
@@ -65,6 +68,7 @@ public class Player : MonoBehaviour
         canWallClimb = true;
         canHide = true;
         controller.changeSettings(canDoubleJump, canWallClimb);
+        pacifistTutorial.gameObject.SetActive(true);
     }
 
     public void ViolentMode() {
@@ -73,6 +77,7 @@ public class Player : MonoBehaviour
         canWallClimb = false;
         canHide = false;
         controller.changeSettings(canDoubleJump, canWallClimb);
+        violentTutorial.gameObject.SetActive(true);
     }
 
     public void Damage(int amount) {

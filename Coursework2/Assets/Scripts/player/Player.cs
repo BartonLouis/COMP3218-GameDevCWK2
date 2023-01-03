@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
     public float runSpeed = 40f;
 
+    public GameObject pacifistTutorial;
+    public GameObject violentTutorial;
+
     private void Awake() {
         current = this;
     }
@@ -57,6 +60,7 @@ public class Player : MonoBehaviour
         canWallClimb = true;
         canHide = true;
         controller.changeSettings(canDoubleJump, canWallClimb);
+        pacifistTutorial.gameObject.SetActive(true);
     }
 
     public void ViolentMode() {

@@ -725,3 +725,5 @@ MonoBehaviour:
   levelToLoad: 1
   healthBar: {fileID: 0}
   runSpeed: 40
+  pacifistTutorial: {fileID: 826442606019628341, guid: 45f1ee70dd9dca246a91b8192353dd5f, type: 3}
+  violentTutorial: {fileID: 0}

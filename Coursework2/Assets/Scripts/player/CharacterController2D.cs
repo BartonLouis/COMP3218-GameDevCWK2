@@ -38,6 +38,10 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 	private void Awake() {
+		Vector3 theScale = transform.localScale;
+		if (theScale.x < 0) {
+			m_FacingRight = false;
+		}
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
 		if (OnLandEvent == null)

@@ -22,4 +22,9 @@ public class HealthBar : MonoBehaviour
         slider.maxValue = health;
         slider.value = slider.maxValue;
     }
+
+    public void Destroy() {
+        Destroy(gameObject);
+    }
+    
 }

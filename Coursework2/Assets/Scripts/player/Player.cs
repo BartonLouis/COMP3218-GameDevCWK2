@@ -15,13 +15,18 @@ public class Player : MonoBehaviour
     public AudioSource backgroundMusic;
     public AudioSource attackAudio;
 
-    public int maxHealth = 100;
-    public int health = 0;
+    public float maxHealth = 100;
+    public float health = 0;
     public int levelToLoad = 1;
 
     public HealthBar healthBar;
 
     public float runSpeed = 40f;
+
+    public float healRate = 10;
+    public float timeToHealStart = 5f;
+
+    public int damage = 25;
 
     private void Awake() {
         current = this;
@@ -39,6 +44,10 @@ public class Player : MonoBehaviour
     private bool canAttack = false;
     private bool canWallClimb = false;
     private bool canHide = false;
+    private bool died = false;
+
+    private float timeTillHealStart = 2f;
+    private bool healing = true;
     
     void Start()
     {
@@ -47,11 +56,10 @@ public class Player : MonoBehaviour
         PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
-        healthBar.SetMaxHealth(health);
+        healthBar.SetMaxHealth(Mathf.FloorToInt(health));
     }
 
     public void PacifistMode() {
-        Debug.Log("Going Pacifist Mode");
         canDoubleJump = false;
         canAttack = false;
         canWallClimb = true;
@@ -60,7 +68,6 @@ public class Player : MonoBehaviour
     }
 
     public void ViolentMode() {
-        Debug.Log("Going Violent Mode");
         canDoubleJump = true;
         canAttack = true;
         canWallClimb = false;
@@ -69,14 +76,17 @@ public class Player : MonoBehaviour
     }
 
     public void Damage(int amount) {
+        healing = false;
+        timeTillHealStart = timeToHealStart;
         health -= amount;
         if (health < 0) {
             health = 0;
         }
-        if (health == 0) {
+        if (health == 0 && !died) {
+            died = true;
             OnDeath();
         }
-        healthBar.SetHealth(health);
+        healthBar.SetHealth(Mathf.FloorToInt(health));
         animator.SetBool("GettingHit", true);
     }
 
@@ -99,6 +109,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeTillHealStart > 0) {
+            timeTillHealStart -= Time.deltaTime;
+        }
+        
+        if (timeTillHealStart <= 0 ) {
+            timeTillHealStart = 0;
+            healing = true;
+        }
+
+        if (healing) {
+            health += Time.deltaTime * healRate;
+            if (health >= maxHealth) {
+                healing = false;
+                health = maxHealth;
+            }
+            healthBar.SetHealth(Mathf.FloorToInt(health));
+        }
         if (Input.GetKeyDown(KeyCode.E)) {
             Damage(10);
         }
@@ -154,7 +181,7 @@ public class Player : MonoBehaviour
         animator.SetBool("Jump", false);
         jump = false;
         grounded = true;
-        //landAudio.Play();
+        landAudio.Play();
     }
 
     public void OnJump() {
@@ -201,6 +228,16 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("LoadCastle")){
             //SceneManager.LoadScene(1);
             SceneManager.LoadScene(2);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Enemy") && attackCollider.enabled) {
+            try {
+                collision.gameObject.GetComponent<Enemy>().Damage(damage);
+            } catch {
+                collision.gameObject.GetComponent<Enemy2>().Damage(damage);
+            }
         }
     }
 

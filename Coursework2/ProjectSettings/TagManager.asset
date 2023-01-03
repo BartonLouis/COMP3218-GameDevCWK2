@@ -9,6 +9,7 @@ TagManager:
   - LoadForest
   - LoadVillage
   - LoadCastle
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -20,9 +20,10 @@ public class Character : MonoBehaviour
 
     protected const float groundRadius = .2f;
     protected Transform target;
-    protected float direction = 1f;
+    public float direction = 1f;
     protected bool chasing = false;
     protected bool reached = false;
+    protected bool dead = false;
 
     protected HealthBar healthBar;
 
@@ -37,10 +38,17 @@ public class Character : MonoBehaviour
         healthBar.SetMaxHealth(health);
     }
 
+    protected virtual void OnDeath() {
+    
+    }
+
     public void Damage(int amount) {
         health -= amount;
         if (health < 0) {
             health = 0;
+        }
+        if (health == 0) {
+            OnDeath();
         }
         healthBar.SetHealth(health);
     }
@@ -50,14 +58,19 @@ public class Character : MonoBehaviour
     }
 
     protected void UpdateLogic() {
-        if (CanSeeTarget()) {
-            ChaseTarget();
-            chasing = true;
-        } else {
-            chasing = false;
-            StopChasingTarget();
+        if (!dead) {
+            if (health == 0) {
+                dead = true;
+            }
+            if (CanSeeTarget()) {
+                ChaseTarget();
+                chasing = true;
+            } else {
+                chasing = false;
+                StopChasingTarget();
+            }
+            healthBar.SetPosition(transform.position);
         }
-        healthBar.SetPosition(transform.position);
     }
 
     private bool CanSeeTarget() {
@@ -110,10 +123,15 @@ public class Character : MonoBehaviour
     }
 
     private void FixedUpdate(){
-        if (chasing && !reached) {
-            controller.Move(direction * chaseSpeed * Time.fixedDeltaTime, false, false);
-        } else if (!reached) {
-            controller.Move(direction * idleSpeed * Time.fixedDeltaTime, false, false);
+        if (!dead) {
+
+            if (chasing && !reached) {
+                controller.Move(direction * chaseSpeed * Time.fixedDeltaTime, false, false);
+            } else if (!reached) {
+                controller.Move(direction * idleSpeed * Time.fixedDeltaTime, false, false);
+            } else {
+                controller.Move(0, false, false);
+            }
         } else {
             controller.Move(0, false, false);
         }

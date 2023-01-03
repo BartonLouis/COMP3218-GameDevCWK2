@@ -46,8 +46,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         backgroundMusic.Play();
-        //ViolentMode();
-        PacifistMode();
+        ViolentMode();
+        //PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
         healthBar.SetMaxHealth(health);
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
         canWallClimb = false;
         canHide = false;
         controller.changeSettings(canDoubleJump, canWallClimb);
+        violentTutorial.gameObject.SetActive(true);
     }
 
     public void Damage(int amount) {

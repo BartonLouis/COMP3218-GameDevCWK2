@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
 
     private float timeTillHealStart = 2f;
     private bool healing = true;
+
+    public static int spawnLocation = 1;
     
     void Start()
     {
@@ -59,7 +61,27 @@ public class Player : MonoBehaviour
         PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
-        healthBar.SetMaxHealth(Mathf.FloorToInt(health));
+        //healthBar.SetMaxHealth(Mathf.FloorToInt(health));
+        if (spawnLocation == 2){
+            GameObject spawnPoint = GameObject.FindWithTag("Spawn2");
+            transform.position = spawnPoint.gameObject.transform.position;
+        }
+        if (spawnLocation == 3){
+            GameObject spawnPoint = GameObject.FindWithTag("Spawn3");
+            transform.position = spawnPoint.gameObject.transform.position;
+        }
+        if (spawnLocation == 4){
+            GameObject spawnPoint = GameObject.FindWithTag("Spawn4");
+            transform.position = spawnPoint.gameObject.transform.position;
+        }
+        if (spawnLocation == 5){
+            GameObject spawnPoint = GameObject.FindWithTag("Spawn5");
+            transform.position = spawnPoint.gameObject.transform.position;
+        }
+        if (spawnLocation == 6){
+            GameObject spawnPoint = GameObject.FindWithTag("Spawn6");
+            transform.position = spawnPoint.gameObject.transform.position;
+        }
     }
 
     public void PacifistMode() {
@@ -219,21 +241,25 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other){
-        //if(other.gameObject.CompareTag("LoadNextScene")){
-            //SceneManager.LoadScene(1);
-            //SceneManager.LoadScene(levelToLoad);
-        //} 
-        if(other.gameObject.CompareTag("LoadForest")){
-            //SceneManager.LoadScene(1);
-            SceneManager.LoadScene(0);
-        }
-        if(other.gameObject.CompareTag("LoadVillage")){
-            //SceneManager.LoadScene(1);
+        if(other.gameObject.CompareTag("ForestToVillage")){
             SceneManager.LoadScene(1);
+            spawnLocation = 3;
         }
-        if(other.gameObject.CompareTag("LoadCastle")){
-            //SceneManager.LoadScene(1);
+        if(other.gameObject.CompareTag("ForestToCastle")){
             SceneManager.LoadScene(2);
+            spawnLocation = 6;
+        }
+        if(other.gameObject.CompareTag("VillageToForest")){
+            SceneManager.LoadScene(0);
+            spawnLocation = 2;
+        }
+        if(other.gameObject.CompareTag("VillageToCastle")){
+            SceneManager.LoadScene(2);
+            spawnLocation = 5;
+        }
+        if(other.gameObject.CompareTag("CastleToVillage")){
+            SceneManager.LoadScene(1);
+            spawnLocation = 4;
         }
     }
 

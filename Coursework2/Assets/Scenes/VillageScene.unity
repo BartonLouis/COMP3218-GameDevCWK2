@@ -1277,6 +1277,37 @@ Transform:
   m_Father: {fileID: 763190771}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &444637602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444637603}
+  m_Layer: 0
+  m_Name: SpawnPoint3
+  m_TagString: Spawn3
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444637603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444637602}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -468.6, y: -8.307305, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 763190771}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &498160036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1978,6 +2009,8 @@ Transform:
   m_Children:
   - {fileID: 2141947907}
   - {fileID: 435911783}
+  - {fileID: 444637603}
+  - {fileID: 1633248914}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3272,7 +3305,7 @@ GameObject:
   - component: {fileID: 1263590237}
   m_Layer: 0
   m_Name: LoadForest
-  m_TagString: LoadCastle
+  m_TagString: VillageToCastle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4373,6 +4406,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6921080644910612296, guid: 07da766276928f140a69a8f354fc51ff, type: 3}
   m_PrefabInstance: {fileID: 1626250222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1633248913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633248914}
+  m_Layer: 0
+  m_Name: SpawnPoint4
+  m_TagString: Spawn4
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1633248914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633248913}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -257.63, y: -8.307305, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 763190771}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645782058
 GameObject:
   m_ObjectHideFlags: 0
@@ -4386,7 +4450,7 @@ GameObject:
   - component: {fileID: 1645782060}
   m_Layer: 0
   m_Name: LoadForest
-  m_TagString: LoadForest
+  m_TagString: VillageToForest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

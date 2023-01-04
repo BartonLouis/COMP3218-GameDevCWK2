@@ -4,12 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LoadNextScene
   - Attack
-  - LoadForest
-  - LoadVillage
-  - LoadCastle
   - Enemy
+  - ForestToVillage
+  - VillageToForest
+  - VillageToCastle
+  - CastleToVillage
+  - ForestToCastle
+  - Spawn2
+  - Spawn3
+  - Spawn4
+  - Spawn5
+  - Spawn6
   layers:
   - Default
   - TransparentFX

@@ -1,18 +1,18 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Character
+public class Enemy2 : Character
 {
 
+    public GameObject bulletPrefab;
+
     public Animator animator;
-    public BoxCollider2D attackCollider;
-    public int damage = 50;
+    public int damage = 25;
+    public Transform firePoint;
+    public float bulletVelocity;
 
     private bool attacking = false;
-
-    private bool collidingWithPlayer = false;
-    private bool attackedPlayer = false;
 
     public AudioSource growlAudio;
     private bool keepPlayingGrowl = true;
@@ -24,15 +24,12 @@ public class Enemy : Character
         GameObject worldCanvas = GameObject.Find("WorldCanvas");
         healthBar = Instantiate(healthBarPrefab, worldCanvas.transform).GetComponent<HealthBar>();
         healthBar.SetMaxHealth(health);
-        attackCollider.enabled = false;
     }
 
-    private void Update() {
+    // Update is called once per frame
+    void Update()
+    {
         UpdateLogic();
-        if (collidingWithPlayer && !attackedPlayer) {
-            Player.current.Damage(damage);
-            attackedPlayer = true;
-        }
         if (attacking) {
             reached = true;
         }
@@ -41,30 +38,15 @@ public class Enemy : Character
     protected override void OnTargetReached() {
         attacking = true;
         animator.SetBool("Attacking", true);
-        attackAudio.Play();
     }
 
-    public void EnableAttackHitBox() {
-        attackCollider.enabled = true;
-    }
-
-    public void OnAttackFinish() {
+    void Fire() {
+        GameObject gameObject = Instantiate(bulletPrefab, firePoint.position, transform.rotation);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * bulletVelocity, 0f);
+        gameObject.GetComponent<Bullet>().SetDamage(damage);
         animator.SetBool("Attacking", false);
-        attackCollider.enabled = false;
-        attackedPlayer = false;
         attacking = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Player") && !collidingWithPlayer) {
-            collidingWithPlayer = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Player") && collidingWithPlayer) {
-            collidingWithPlayer = false;
-        }
+        attackAudio.Play();
     }
 
     protected override void OnDeath() {
@@ -74,7 +56,6 @@ public class Enemy : Character
 
     public void OnDeathComplete() {
         healthBar.Destroy();
-        Destroy(healthBar);
+        Destroy(gameObject);
     }
-
 }

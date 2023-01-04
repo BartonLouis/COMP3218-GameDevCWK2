@@ -55,8 +55,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         backgroundMusic.Play();
-        ViolentMode();
-        //PacifistMode();
+        //ViolentMode();
+        PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
         healthBar.SetMaxHealth(Mathf.FloorToInt(health));
@@ -129,10 +129,10 @@ public class Player : MonoBehaviour
                 healing = false;
                 health = maxHealth;
             }
-            healthBar.SetHealth(Mathf.FloorToInt(health));
+            //healthBar.SetHealth(Mathf.FloorToInt(health));
         }
         if (Input.GetKeyDown(KeyCode.E)) {
-            Damage(10);
+            //Damage(10);
         }
         if (health == 0) {
             return;
@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Hiding", false);
         }
 
-        healthBar.SetPosition(transform.position);
+        //healthBar.SetPosition(transform.position);
     }
 
     private void FixedUpdate() {
@@ -183,14 +183,15 @@ public class Player : MonoBehaviour
     }
 
     public void OnLanding() {
+        //landAudio.Play();
         animator.SetBool("Jump", false);
         jump = false;
         grounded = true;
-        landAudio.Play();
     }
 
     public void OnJump() {
         grounded = false;
+        jump = true;
         animator.SetBool("Jump", true);
     }
 

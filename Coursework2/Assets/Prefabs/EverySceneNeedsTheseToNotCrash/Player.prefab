@@ -274,8 +274,8 @@ MonoBehaviour:
   OnJumpedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerMovement, Assembly-CSharp
+      - m_Target: {fileID: 6670628381156341718}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 1
         m_Arguments:
@@ -289,8 +289,8 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerMovement, Assembly-CSharp
+      - m_Target: {fileID: 6670628381156341718}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnLanding
         m_Mode: 1
         m_Arguments:
@@ -304,8 +304,8 @@ MonoBehaviour:
   OnClimbStartEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerMovement, Assembly-CSharp
+      - m_Target: {fileID: 6670628381156341718}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnClimbStart
         m_Mode: 1
         m_Arguments:
@@ -319,8 +319,8 @@ MonoBehaviour:
   OnClimbStopEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerMovement, Assembly-CSharp
+      - m_Target: {fileID: 6670628381156341718}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnClimbStop
         m_Mode: 1
         m_Arguments:
@@ -528,7 +528,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 1
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -725,8 +725,8 @@ MonoBehaviour:
   levelToLoad: 1
   healthBar: {fileID: 0}
   runSpeed: 40
+  pacifistTutorial: {fileID: 826442606019628341, guid: 45f1ee70dd9dca246a91b8192353dd5f, type: 3}
+  violentTutorial: {fileID: 4449761661145052232, guid: eb76f790ce63da245887d6bb72ee2890, type: 3}
   healRate: 10
   timeToHealStart: 5
   damage: 25
-  pacifistTutorial: {fileID: 826442606019628341, guid: 45f1ee70dd9dca246a91b8192353dd5f, type: 3}
-  violentTutorial: {fileID: 4449761661145052232, guid: eb76f790ce63da245887d6bb72ee2890, type: 3}

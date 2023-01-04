@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
     public float health = 0;
     public int levelToLoad = 1;
 
-    public HealthBar healthBar;
+    
+    public GameObject healthBarPrefab;
 
     public float runSpeed = 40f;
 
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
     private bool canWallClimb = false;
     private bool canHide = false;
     private bool died = false;
+    private HealthBar healthBar;
 
     private float timeTillHealStart = 2f;
     private bool healing = true;
@@ -82,6 +84,9 @@ public class Player : MonoBehaviour
             GameObject spawnPoint = GameObject.FindWithTag("Spawn6");
             transform.position = spawnPoint.gameObject.transform.position;
         }
+        GameObject worldCanvas = GameObject.Find("WorldCanvas");
+        healthBar = Instantiate(healthBarPrefab, worldCanvas.transform).GetComponent<HealthBar>();
+        healthBar.SetMaxHealth(Mathf.FloorToInt(health));
     }
 
     public void PacifistMode() {
@@ -151,10 +156,7 @@ public class Player : MonoBehaviour
                 healing = false;
                 health = maxHealth;
             }
-            //healthBar.SetHealth(Mathf.FloorToInt(health));
-        }
-        if (Input.GetKeyDown(KeyCode.E)) {
-            //Damage(10);
+            healthBar.SetHealth(Mathf.FloorToInt(health));
         }
         if (health == 0) {
             return;
@@ -192,7 +194,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Hiding", false);
         }
 
-        //healthBar.SetPosition(transform.position);
+        healthBar.SetPosition(transform.position);
     }
 
     private void FixedUpdate() {

@@ -31,7 +31,6 @@ public class SceneController : MonoBehaviour
     }
 
     public void PlayerDied() {
-        Debug.Log("Here");
         DeathMenu.SetActive(true);
     }
 

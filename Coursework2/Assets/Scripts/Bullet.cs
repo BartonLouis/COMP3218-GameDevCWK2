@@ -9,9 +9,6 @@ public class Bullet : MonoBehaviour
     private float timeToLive = 5;
 
     private bool flipped = false;
-    private void Start() {
-        Debug.Log("I Exist!");
-    }
 
     public void SetDamage(int damage) {
         this.damage = damage;

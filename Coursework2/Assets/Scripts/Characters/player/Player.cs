@@ -270,7 +270,7 @@ public class Player : MonoBehaviour
             try {
                 collision.gameObject.GetComponent<Enemy>().Damage(damage);
             } catch {
-                collision.gameObject.GetComponent<Enemy2>().Damage(damage);
+                collision.gameObject.GetComponent<RangedEnemy>().Damage(damage);
             }
         }
     }

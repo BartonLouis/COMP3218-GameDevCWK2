@@ -15,12 +15,11 @@ public class Character : MonoBehaviour
     public LayerMask whatIsPlayer;
     public GameObject healthBarPrefab;
     public int maxHealth = 100;
-    public int health;
-
-
+    
+    protected int health;
     protected const float groundRadius = .2f;
     protected Transform target;
-    public float direction = 1f;
+    protected float direction = 1f;
     protected bool chasing = false;
     protected bool reached = false;
     protected bool dead = false;
@@ -51,6 +50,14 @@ public class Character : MonoBehaviour
             OnDeath();
         }
         healthBar.SetHealth(health);
+        // Turn to face same direction
+        if (target.position.x < transform.position.x) {
+            controller.FaceLeft();
+            direction = -1f;
+        } else {
+            controller.FaceRight();
+            direction = 1f;
+        }
     }
 
     private void Update() {

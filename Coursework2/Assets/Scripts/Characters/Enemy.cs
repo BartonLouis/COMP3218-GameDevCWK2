@@ -14,6 +14,10 @@ public class Enemy : Character
     private bool collidingWithPlayer = false;
     private bool attackedPlayer = false;
 
+    public AudioSource growlAudio;
+    private bool keepPlayingGrowl = true;
+    public AudioSource attackAudio;
+
     private void Start() {
         target = Player.current.transform;
         health = maxHealth;
@@ -37,6 +41,7 @@ public class Enemy : Character
     protected override void OnTargetReached() {
         attacking = true;
         animator.SetBool("Attacking", true);
+        attackAudio.Play();
     }
 
     public void EnableAttackHitBox() {

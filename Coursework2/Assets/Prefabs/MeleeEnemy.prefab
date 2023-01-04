@@ -367,6 +367,8 @@ MonoBehaviour:
   animator: {fileID: 6753619462634901710}
   attackCollider: {fileID: 6753619462634901711}
   damage: 50
+  growlAudio: {fileID: 1044646104874140687}
+  attackAudio: {fileID: 1916735594361190529}
 --- !u!95 &6753619462634901710
 Animator:
   serializedVersion: 4

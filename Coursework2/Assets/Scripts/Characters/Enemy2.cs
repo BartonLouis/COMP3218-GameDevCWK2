@@ -14,6 +14,10 @@ public class Enemy2 : Character
 
     private bool attacking = false;
 
+    public AudioSource growlAudio;
+    private bool keepPlayingGrowl = true;
+    public AudioSource attackAudio;
+
     private void Start() {
         target = Player.current.transform;
         health = maxHealth;
@@ -42,6 +46,7 @@ public class Enemy2 : Character
         gameObject.GetComponent<Bullet>().SetDamage(damage);
         animator.SetBool("Attacking", false);
         attacking = false;
+        attackAudio.Play();
     }
 
     protected override void OnDeath() {

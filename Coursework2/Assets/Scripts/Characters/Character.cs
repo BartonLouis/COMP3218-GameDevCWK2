@@ -84,6 +84,7 @@ public class Character : MonoBehaviour
         reached = false;
         Vector2 endPos = castPoint.position + Vector3.right * viewRange * direction;
         RaycastHit2D ray = Physics2D.Linecast(castPoint.position, endPos, 1 << LayerMask.NameToLayer("Action"));
+        Debug.DrawRay(castPoint.position, endPos, Color.red);
         if (ray.collider != null) {
             if (ray.collider.gameObject.CompareTag("Player")) {
                 return true;
@@ -123,7 +124,8 @@ public class Character : MonoBehaviour
     protected virtual void StopChasingTarget() {
         chasing = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundAheadCheck.position, groundRadius, whatIsGround);
-        if (colliders.Length == 0) {
+        Collider2D[] colliders2 = Physics2D.OverlapCircleAll(wallAheadCheck.position, groundRadius, whatIsGround);
+        if (colliders.Length == 0 || colliders2.Length > 0) {
             controller.Flip();
             direction *= -1;
         }

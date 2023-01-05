@@ -59,8 +59,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         backgroundMusic.Play();
-        //ViolentMode();
-        PacifistMode();
+        ViolentMode();
+        //PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
         //healthBar.SetMaxHealth(Mathf.FloorToInt(health));
@@ -189,9 +189,11 @@ public class Player : MonoBehaviour
         if (canHide && hideableObjectClose && Input.GetButtonDown("Interact") && !hidden) {
             hidden = true;
             animator.SetBool("Hiding", true);
+            gameObject.layer = LayerMask.NameToLayer("NPCLayer");
         } else if (Input.GetButtonDown("Interact") && hidden) {
             hidden = false;
             animator.SetBool("Hiding", false);
+            gameObject.layer = LayerMask.NameToLayer("Action");
         }
 
         healthBar.SetPosition(transform.position);

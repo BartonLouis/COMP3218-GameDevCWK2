@@ -25,6 +25,10 @@ public class RangedEnemy : MonoBehaviour
     private bool attacking = false;
     private bool dead = false;
 
+    public AudioSource growlAudio;
+    private bool keepPlayingGrowl = true;
+    public AudioSource attackAudio;
+
     protected HealthBar healthBar;
 
     private void Start() {
@@ -91,6 +95,7 @@ public class RangedEnemy : MonoBehaviour
         gameObject.GetComponent<Bullet>().SetDamage(damage);
         animator.SetBool("Attacking", false);
         attacking = false;
+        attackAudio.Play();
     }
 
     private void OnDeath() {

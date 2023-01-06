@@ -59,8 +59,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         backgroundMusic.Play();
-        ViolentMode();
-        //PacifistMode();
+        //ViolentMode();
+        PacifistMode();
         attackCollider.enabled = false;
         health = maxHealth;
         //healthBar.SetMaxHealth(Mathf.FloorToInt(health));

@@ -7,28 +7,20 @@ using UnityEngine.SceneManagement;
 public class StoryEngine : MonoBehaviour
 {
 
-    public enum EventType
-    {
-        DefendedFriend,
-        HidFromMonster,
-        TestEvent
-    }
-
     public static StoryEngine current;
 
-    public event Action<EventType> EventOccured;
-    private static List<EventType> OccuredEvents = new();
-    private List<EventType> OccuredEventsSinceCheckpoint;
+    public event Action<String> EventOccured;
+    private static List<String> OccuredEvents = new();
+    private List<String> OccuredEventsSinceCheckpoint;
 
     private void Awake() {
         StoryEngine.current = this;
+        OccuredEventsSinceCheckpoint = new List<String>();
     }
 
-    private void Start() {
-        OccuredEventsSinceCheckpoint = new List<EventType>();
-    }
 
-    public void TriggerEvent(EventType eventType) {
+    public void TriggerEvent(String eventType) {
+        Debug.Log(eventType);
         // If event hasn't already occured, add it to the list of events
         if (!OccuredEvents.Contains(eventType) && !OccuredEventsSinceCheckpoint.Contains(eventType)) {
             OccuredEventsSinceCheckpoint.Add(eventType);
@@ -37,12 +29,8 @@ public class StoryEngine : MonoBehaviour
         EventOccured(eventType);
     }
 
-    public bool HasOccured(EventType eventType) {
+    public bool HasOccured(String eventType) {
         return (OccuredEvents.Contains(eventType) || OccuredEventsSinceCheckpoint.Contains(eventType));
-    }
-
-    public void TestEventOccured() {
-        TriggerEvent(EventType.TestEvent);
     }
 
     public void RestartFromCheckpoint() {
@@ -50,11 +38,11 @@ public class StoryEngine : MonoBehaviour
     }
 
     public void CheckPoint() {
-        foreach (EventType e in OccuredEventsSinceCheckpoint) {
+        foreach (String e in OccuredEventsSinceCheckpoint) {
             if (!OccuredEvents.Contains(e)) {
                 OccuredEvents.Add(e);
             }
         }
-        OccuredEventsSinceCheckpoint = new List<EventType>();
+        OccuredEventsSinceCheckpoint = new List<String>();
     }
 }

@@ -723,7 +723,11 @@ MonoBehaviour:
   maxHealth: 100
   health: 0
   levelToLoad: 1
+  maxRage: 100
+  rage: 0
   healthBarPrefab: {fileID: 5710159493154946388, guid: 7f500ae40c153f541b31f4f94544e26a, type: 3}
+  rageMeterPrefab: {fileID: 6503330796107483819, guid: c93e0adf8a4db784ea49b2e675a1aab8, type: 3}
+  timerPrefab: {fileID: 3912754513460145127, guid: 98581a59fb9210445854e3756dc7d716, type: 3}
   runSpeed: 40
   pacifistTutorial: {fileID: 826442606019628341, guid: 45f1ee70dd9dca246a91b8192353dd5f, type: 3}
   violentTutorial: {fileID: 4449761661145052232, guid: eb76f790ce63da245887d6bb72ee2890, type: 3}

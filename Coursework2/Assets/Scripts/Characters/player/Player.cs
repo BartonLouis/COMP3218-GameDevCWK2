@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -19,8 +20,13 @@ public class Player : MonoBehaviour
     public float health = 0;
     public int levelToLoad = 1;
 
+    public int maxRage = 100;
+    public int rage = 0;
+
     
     public GameObject healthBarPrefab;
+    public GameObject rageMeterPrefab;
+    public GameObject timerPrefab;
 
     public float runSpeed = 40f;
 
@@ -50,17 +56,19 @@ public class Player : MonoBehaviour
     private bool canHide = false;
     private bool died = false;
     private HealthBar healthBar;
+    private HealthBar rageMeter;
+    private Timer timer;
+    
 
     private float timeTillHealStart = 2f;
     private bool healing = true;
 
     public static int spawnLocation = 1;
     
-    void Start()
-    {
-        backgroundMusic.Play();
+    void Start() {
         //ViolentMode();
         PacifistMode();
+        backgroundMusic.Play();
         attackCollider.enabled = false;
         health = maxHealth;
         //healthBar.SetMaxHealth(Mathf.FloorToInt(health));
@@ -87,24 +95,54 @@ public class Player : MonoBehaviour
         GameObject worldCanvas = GameObject.Find("WorldCanvas");
         healthBar = Instantiate(healthBarPrefab, worldCanvas.transform).GetComponent<HealthBar>();
         healthBar.SetMaxHealth(Mathf.FloorToInt(health));
+        StoryEngine.current.EventOccured += EventOccured;
+    }
+
+    void EventOccured(String eventType) {
+        if (eventType == "EnemyKilled" && rage < maxRage) {
+            rage += 10;
+            rageMeter.SetHealth(rage);
+            if (rage >= maxRage) {
+                rage = maxRage;
+                StoryEngine.current.TriggerEvent("RageBarFilled");
+            }
+        }
     }
 
     public void PacifistMode() {
+        StoryEngine.current.TriggerEvent("PacifistChoice");
+        if (rageMeter != null) {
+            Destroy(rageMeter.gameObject);
+            rage = 0;
+        }
+
         canDoubleJump = false;
         canAttack = false;
         canWallClimb = true;
         canHide = true;
         controller.changeSettings(canDoubleJump, canWallClimb);
         pacifistTutorial.gameObject.SetActive(true);
+        GameObject canvas = GameObject.Find("Canvas");
+        timer = Instantiate(timerPrefab, canvas.transform).GetComponent<Timer>();
+        
     }
 
     public void ViolentMode() {
+        StoryEngine.current.TriggerEvent("ViolentChoice");
+        if (timer != null) {
+            Destroy(timer.gameObject);
+        }
         canDoubleJump = true;
         canAttack = true;
         canWallClimb = false;
         canHide = false;
         controller.changeSettings(canDoubleJump, canWallClimb);
         violentTutorial.gameObject.SetActive(true);
+        rage = 0;
+        GameObject canvas = GameObject.Find("Canvas");
+        rageMeter = Instantiate(rageMeterPrefab, canvas.transform).GetComponent<HealthBar>();
+        rageMeter.SetMaxHealth(maxRage);
+        rageMeter.SetHealth(rage);
     }
 
     public void Damage(int amount) {
@@ -190,6 +228,7 @@ public class Player : MonoBehaviour
             hidden = true;
             animator.SetBool("Hiding", true);
             gameObject.layer = LayerMask.NameToLayer("NPCLayer");
+            StoryEngine.current.TriggerEvent("Hidden");
         } else if (Input.GetButtonDown("Interact") && hidden) {
             hidden = false;
             animator.SetBool("Hiding", false);

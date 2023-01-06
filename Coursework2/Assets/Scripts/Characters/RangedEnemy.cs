@@ -105,6 +105,7 @@ public class RangedEnemy : MonoBehaviour
 
     public void OnDeathComplete() {
         healthBar.Destroy();
+        StoryEngine.current.TriggerEvent("EnemyKilled");
         Destroy(gameObject);
     }
 

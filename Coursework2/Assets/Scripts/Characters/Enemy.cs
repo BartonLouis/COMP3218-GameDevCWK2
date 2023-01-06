@@ -75,6 +75,7 @@ public class Enemy : Character
     public void OnDeathComplete() {
         healthBar.Destroy();
         Destroy(healthBar);
+        StoryEngine.current.TriggerEvent("EnemyKilled");
     }
 
 }

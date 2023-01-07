@@ -26,7 +26,10 @@ public class StoryEngine : MonoBehaviour
             OccuredEventsSinceCheckpoint.Add(eventType);
         }
         // Trigger the event, so that any listening objects are notified that the event occured
-        EventOccured(eventType);
+        if (EventOccured != null) {
+            EventOccured(eventType);
+        }
+        
     }
 
     public bool HasOccured(String eventType) {

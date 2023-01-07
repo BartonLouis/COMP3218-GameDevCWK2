@@ -26,7 +26,15 @@ public class Timer : MonoBehaviour
                 hasFinished = true;
                 StoryEngine.current.TriggerEvent("TimerRanOut");
             }
-            text.text = "" + Mathf.FloorToInt(timeRemaining / 60) + ":" + Mathf.FloorToInt(timeRemaining % 60);
+            string minutes = Mathf.FloorToInt(timeRemaining / 60).ToString();
+            string seconds = Mathf.FloorToInt(timeRemaining % 60).ToString();
+            if (minutes.Length == 1) {
+                minutes = "0" + minutes;
+            }
+            if (seconds.Length == 1) {
+                seconds = "0" + seconds;
+            }
+            text.text = minutes + ":" + seconds;
         }
     }
 }

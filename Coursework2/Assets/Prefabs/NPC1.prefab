@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2834218916067078121}
   - component: {fileID: 2834218916067078122}
   - component: {fileID: 2834218916067078037}
-  - component: {fileID: 2834218916067078038}
   - component: {fileID: 2834218916067078039}
   - component: {fileID: 2834218916067078120}
   - component: {fileID: 2409137824345013117}
@@ -110,35 +109,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2834218916067078038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2834218916067078123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d17fe948945714795971fcd8cd4abb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  greetingAudio: {fileID: 2409137824345013117}
-  NPCCollider: {fileID: 0}
-  d1:
-    name: Greg
-    sentences:
-    - Well, Hello There!
-    - I didn't expect to see anyone else in these 'ere parts
-    - 'Dangerous to be out at night you know! Never know what ye''ll find! '
-    - Or what will find you! Hahahaha
-    - When travelling at night, use safe passages to avoid the monsters. There's
-      one over there. Go and have a look and explore the city a bit.
-  d2:
-    name: Greg
-    sentences:
-    - So Youre still alive I see. Well, good fortune be upon ye!
-    - So you've explored the city a bit then. There's always more out there to discover.
-      Keep at it good lad!
 --- !u!61 &2834218916067078039
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -91,10 +91,12 @@ public class SceneController : MonoBehaviour
     }
 
     public void LoadNext() {
+        StoryEngine.current.CheckPoint();
         SceneManager.LoadScene(nextSceneIndex);
     }
 
     public void LoadPrev() {
+        StoryEngine.current.CheckPoint();
         SceneManager.LoadScene(previousSceneIndex);
     }
 

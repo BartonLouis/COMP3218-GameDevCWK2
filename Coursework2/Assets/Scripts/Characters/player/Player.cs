@@ -60,8 +60,11 @@ public class Player : MonoBehaviour
     private bool healing = true;
     
     void Start() {
-        //ViolentMode();
-        PacifistMode();
+        if (StoryEngine.current.HasOccured("PacifistChoice")) {
+            PacifistMode();
+        } else {
+            ViolentMode();
+        }
         backgroundMusic.Play();
         attackCollider.enabled = false;
         health = maxHealth;

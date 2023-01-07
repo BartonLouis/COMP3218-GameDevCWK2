@@ -22,6 +22,7 @@ public class CinematicManager : MonoBehaviour
     public void Defend() {
         timelineOnDefendFriend.Play();
         StoryEngine.current.TriggerEvent("ViolentChoice");
+        StoryEngine.current.CheckPoint();
         activated = true;
         defending = true;
     }
@@ -29,6 +30,7 @@ public class CinematicManager : MonoBehaviour
     public void Hide() {
         timelineOnHide.Play();
         StoryEngine.current.TriggerEvent("PacifistChoice");
+        StoryEngine.current.CheckPoint();
         activated = true;
         hiding = true;
     }

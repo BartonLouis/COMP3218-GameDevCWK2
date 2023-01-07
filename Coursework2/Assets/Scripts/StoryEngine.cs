@@ -8,7 +8,7 @@ public class StoryEngine : MonoBehaviour
 {
 
     public static StoryEngine current;
-
+    public static int ending = 0;
     public event Action<String> EventOccured;
     private static List<String> OccuredEvents = new();
     private List<String> OccuredEventsSinceCheckpoint;
@@ -29,7 +29,15 @@ public class StoryEngine : MonoBehaviour
         if (EventOccured != null) {
             EventOccured(eventType);
         }
+        if (eventType == "ReachedCastleEnd") {
+            CheckEnding(eventType);
+        } else if (eventType == "ReachedForest") {
+            CheckEnding(eventType);
+        }
         
+    }
+
+    private void CheckEnding(String eventType) {
     }
 
     public bool HasOccured(String eventType) {
@@ -47,5 +55,9 @@ public class StoryEngine : MonoBehaviour
             }
         }
         OccuredEventsSinceCheckpoint = new List<String>();
+    }
+
+    public void GetEnding() {
+
     }
 }

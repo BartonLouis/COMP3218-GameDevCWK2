@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     public float maxHealth = 100;
     public float health = 0;
-    public int levelToLoad = 1;
 
     public int maxRage = 100;
     public int rage = 0;

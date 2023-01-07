@@ -24,10 +24,10 @@ public class SceneController : MonoBehaviour
 
     void EventHandler(string eventType) {
         if (!mainMenu) {
-            if (eventType == "PacifistChoice" && SceneManager.GetActiveScene().buildIndex == 0) {
+            if (eventType == "PacifistChoice" && SceneManager.GetActiveScene().buildIndex == 1) {
                 Player.current.SetPosition(PacifistStartPoint);
                 Instantiate(PacifistTutorialPrefab);
-            } else if (eventType == "ViolentChoice" && SceneManager.GetActiveScene().buildIndex == 2) {
+            } else if (eventType == "ViolentChoice" && SceneManager.GetActiveScene().buildIndex == 3) {
                 Player.current.SetPosition(ViolentStartPoint);
                 Instantiate(ViolentTutorialPrefab);
             }
@@ -41,12 +41,12 @@ public class SceneController : MonoBehaviour
             PauseMenu.SetActive(false);
             if (StoryEngine.current.HasOccured("PacifistChoice")) {
                 Player.current.SetPosition(PacifistStartPoint);
-                if (SceneManager.GetActiveScene().buildIndex == 0) {
+                if (SceneManager.GetActiveScene().buildIndex == 1) {
                     Instantiate(PacifistTutorialPrefab);
                 }
             } else if (StoryEngine.current.HasOccured("ViolentChoice")) {
                 Player.current.SetPosition(ViolentStartPoint);
-                if (SceneManager.GetActiveScene().buildIndex == 2) {
+                if (SceneManager.GetActiveScene().buildIndex == 3) {
                     Instantiate(ViolentTutorialPrefab);
                 }
             }

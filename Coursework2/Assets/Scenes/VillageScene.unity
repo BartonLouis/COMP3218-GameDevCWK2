@@ -212,6 +212,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d16cf6fb27f5846807eb8a1f56385c, type: 3}
+--- !u!114 &601181 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2357140976724262141, guid: 63d16cf6fb27f5846807eb8a1f56385c, type: 3}
+  m_PrefabInstance: {fileID: 601180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2732ca604154df4784ebf3c9f07e439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1470054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1995,6 +2006,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1682651413}
     m_Modifications:
+    - target: {fileID: 1523585631333004373, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601181}
+    - target: {fileID: 1523585631333004373, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2082,6 +2101,14 @@ PrefabInstance:
     - target: {fileID: 1523585631625686221, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_Name
       value: DeathMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523585632510698481, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601181}
+    - target: {fileID: 1523585632510698481, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
@@ -4011,6 +4038,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1682651413}
     m_Modifications:
+    - target: {fileID: 129694096664474591, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601181}
+    - target: {fileID: 129694096664474591, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnPause
+      objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838170, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -4098,6 +4133,14 @@ PrefabInstance:
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105534066424239074, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601181}
+    - target: {fileID: 8105534066424239074, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}

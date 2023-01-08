@@ -44,11 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2732ca604154df4784ebf3c9f07e439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: 0
   DeathMenu: {fileID: 0}
   PauseMenu: {fileID: 0}
   PacifistTutorialPrefab: {fileID: 826442606019628341, guid: 45f1ee70dd9dca246a91b8192353dd5f, type: 3}
   ViolentTutorialPrefab: {fileID: 4449761661145052232, guid: eb76f790ce63da245887d6bb72ee2890, type: 3}
+  FriendPrefab: {fileID: 7917770161494480216, guid: 1d6aadf5c16f0cd49b2bc37669da921f, type: 3}
   PacifistStartPoint: {fileID: 0}
   ViolentStartPoint: {fileID: 0}
-  nextSceneIndex: 1
-  previousSceneIndex: 0
+  nextScene: 
+  previousScene: 

@@ -183,6 +183,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1817316876}
     - target: {fileID: 2357140976724262141, guid: 63d16cf6fb27f5846807eb8a1f56385c, type: 3}
+      propertyPath: nextScene
+      value: CastleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357140976724262141, guid: 63d16cf6fb27f5846807eb8a1f56385c, type: 3}
+      propertyPath: previousScene
+      value: ForestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357140976724262141, guid: 63d16cf6fb27f5846807eb8a1f56385c, type: 3}
       propertyPath: nextSceneIndex
       value: 3
       objectReference: {fileID: 0}
@@ -303,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1489299167274752911, guid: dacea9c40e618ed428d5c77c375955a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -38.35
+      value: -37.648113
       objectReference: {fileID: 0}
     - target: {fileID: 1489299167274752911, guid: dacea9c40e618ed428d5c77c375955a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1548,6 +1556,7 @@ Transform:
   m_Children:
   - {fileID: 2141947907}
   - {fileID: 435911783}
+  - {fileID: 1578210280}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2000,27 +2009,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1206
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2052,11 +2061,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -548.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -270
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1523585631625686220, guid: 9b6ee92d62bcb8e4591ac718abb5a48a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3394,6 +3403,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77f96a5d1dc6be44fa48f18f9cd49c1f, type: 3}
+--- !u!1 &1578210279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1578210280}
+  - component: {fileID: 1578210281}
+  m_Layer: 0
+  m_Name: FloorHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1578210280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578210279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -421.27905, y: -9.74, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 763190771}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1578210281
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578210279}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 169.9, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &1612296723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3497,7 +3564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1489299167274752911, guid: dacea9c40e618ed428d5c77c375955a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -38.35
+      value: -37.1481
       objectReference: {fileID: 0}
     - target: {fileID: 1489299167274752911, guid: dacea9c40e618ed428d5c77c375955a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3889,7 +3956,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3962,27 +4029,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4014,11 +4081,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -548.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -270
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3797948194078838171, guid: a5f20d15207874a408d98c8f0cd2b36d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5159,6 +5226,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d1Violent.name
+      value: Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d2Violent.name
+      value: Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d3Violent.name
+      value: Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d1Violent.sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d2Violent.sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d3Violent.sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d1Violent.sentences.Array.data[0]
+      value: 'I-I don''t think I''ve seen ye around here before, but I''ve seen others
+        like ye. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d1Violent.sentences.Array.data[1]
+      value: A-are ye looking for a fight?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d1Violent.sentences.Array.data[2]
+      value: A-are ye looking for a fight?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d2Violent.sentences.Array.data[0]
+      value: So that bloody merchant sent you then? I knew it! I knew that coward
+        would sell me out in a heartbeat!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d2Violent.sentences.Array.data[1]
+      value: 'I-I don''t think I''ve seen ye around here before, but I''ve seen others
+        like ye. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d2Violent.sentences.Array.data[2]
+      value: A-are ye looking for a fight?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539538380483947445, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
+      propertyPath: d3Violent.sentences.Array.data[0]
+      value: I'm sorry, but I canna help ye. It's not safe for me to be around ye.
+        P-please go away.
+      objectReference: {fileID: 0}
     - target: {fileID: 3605308618984544064, guid: 7b9e24e7abcf7444b82372d1ec89861e, type: 3}
       propertyPath: m_RootOrder
       value: 6

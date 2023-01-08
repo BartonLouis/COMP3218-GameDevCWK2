@@ -6,24 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class CinematicManager : MonoBehaviour
 {
+    public PlayableDirector timeline1;
     public PlayableDirector timelineOnDefendFriend;
     public PlayableDirector timelineOnHide;
 
-    public float changeTimeForDefend;
     public string SceneToLoadForDefend;
     private bool defending = false;
 
-    public float changeTimeForHide;
     public string SceneToLoadForHide;
     private bool hiding = false;
 
-    private bool activated = false;
 
+    public void Start() {
+        timeline1.Play();
+    }
     public void Defend() {
         timelineOnDefendFriend.Play();
         StoryEngine.current.TriggerEvent("ViolentChoice");
         StoryEngine.current.CheckPoint();
-        activated = true;
         defending = true;
     }
 
@@ -31,24 +31,20 @@ public class CinematicManager : MonoBehaviour
         timelineOnHide.Play();
         StoryEngine.current.TriggerEvent("PacifistChoice");
         StoryEngine.current.CheckPoint();
-        activated = true;
         hiding = true;
     }
 
-    public void Update() {
-        if (activated) {
+    public void Next() {
+        if (hiding) {
+            SceneManager.LoadScene(SceneToLoadForHide);
+        } else if (defending) {
+            SceneManager.LoadScene(SceneToLoadForDefend);
+        }
+    }
 
-            if (defending) {
-                changeTimeForDefend -= Time.deltaTime;
-                if (changeTimeForDefend <= 0f) {
-                    SceneManager.LoadScene(SceneToLoadForDefend);
-                }
-            } else if (hiding) {
-                changeTimeForHide -= Time.deltaTime;
-                if (changeTimeForHide <= 0f) {
-                    SceneManager.LoadScene(SceneToLoadForHide);
-                }
-            }
+    public void Skip() {
+        if (timeline1.state == PlayState.Playing) {
+            timeline1.time = 70f;
         }
     }
 }

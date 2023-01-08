@@ -4,25 +4,10 @@ using UnityEngine;
 
 public class HideableObject : MonoBehaviour
 {
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Player")) {
+        if (collision.CompareTag("Player") && StoryEngine.current.HasOccured("PacifistChoice")) {
             Player.current.SetHiding(true);
-            InteractIcon.current.Bind(this.gameObject);
+            InteractIcon.current.Bind(transform);
         }
     }
 

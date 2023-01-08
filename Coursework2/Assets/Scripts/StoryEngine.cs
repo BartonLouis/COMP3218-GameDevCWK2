@@ -8,7 +8,7 @@ public class StoryEngine : MonoBehaviour
 {
 
     public static StoryEngine current;
-    public static int ending = 0;
+    public static int endingNumber;
     public event Action<String> EventOccured;
     private static List<String> OccuredEvents = new();
     private List<String> OccuredEventsSinceCheckpoint;
@@ -18,9 +18,7 @@ public class StoryEngine : MonoBehaviour
         OccuredEventsSinceCheckpoint = new List<String>();
     }
 
-
     public void TriggerEvent(String eventType) {
-        Debug.Log(eventType);
         // If event hasn't already occured, add it to the list of events
         if (!OccuredEvents.Contains(eventType) && !OccuredEventsSinceCheckpoint.Contains(eventType)) {
             OccuredEventsSinceCheckpoint.Add(eventType);
@@ -29,15 +27,6 @@ public class StoryEngine : MonoBehaviour
         if (EventOccured != null) {
             EventOccured(eventType);
         }
-        if (eventType == "ReachedCastleEnd") {
-            CheckEnding(eventType);
-        } else if (eventType == "ReachedForest") {
-            CheckEnding(eventType);
-        }
-        
-    }
-
-    private void CheckEnding(String eventType) {
     }
 
     public bool HasOccured(String eventType) {
@@ -46,6 +35,11 @@ public class StoryEngine : MonoBehaviour
 
     public void RestartFromCheckpoint() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ResetValues() {
+        OccuredEvents = new List<String>();
+        OccuredEventsSinceCheckpoint = new List<String>();
     }
 
     public void CheckPoint() {
@@ -57,7 +51,9 @@ public class StoryEngine : MonoBehaviour
         OccuredEventsSinceCheckpoint = new List<String>();
     }
 
-    public void GetEnding() {
-
+    public void TriggerEnding(int endingNum) {
+        Debug.Log("Ending: " + endingNum);
+        endingNumber = endingNum;
+        SceneManager.LoadScene("Ending");
     }
 }

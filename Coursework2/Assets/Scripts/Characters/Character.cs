@@ -84,7 +84,6 @@ public class Character : MonoBehaviour
         reached = false;
         Vector2 endPos = castPoint.position + Vector3.right * viewRange * direction;
         RaycastHit2D ray = Physics2D.Linecast(castPoint.position, endPos, 1 << LayerMask.NameToLayer("Action"));
-        Debug.DrawRay(castPoint.position, endPos, Color.red);
         if (ray.collider != null) {
             if (ray.collider.gameObject.CompareTag("Player")) {
                 return true;

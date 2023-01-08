@@ -7,24 +7,16 @@ public class InteractIcon : MonoBehaviour
     public static InteractIcon current;
     public Animator animator;
 
-    private GameObject boundObject;
     private void Awake() {
         current = this;
     }
 
-    public void Bind(GameObject o) {
-        boundObject = o;
+    public void Bind(Transform o) {
+        transform.position = new Vector3(o.position.x, o.position.y, transform.position.z);
         animator.SetBool("Bound", true);
     }
 
     public void UnBind() {
-        boundObject = null;
         animator.SetBool("Bound", false);
-    }
-
-    public void Update() {
-        if (boundObject != null) {
-            transform.position = boundObject.transform.position;
-        }
     }
 }

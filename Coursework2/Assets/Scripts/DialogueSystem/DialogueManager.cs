@@ -51,6 +51,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue() {
         StopAllCoroutines();
+        StoryEngine.current.TriggerEvent("FinishedDialogueWith" + nameText.GetComponent<TextMeshProUGUI>().text);
         dialogueText.GetComponent<TextMeshProUGUI>().text = "";
         nameText.GetComponent<TextMeshProUGUI>().text = "";
         animator.SetBool("IsOpen", false);

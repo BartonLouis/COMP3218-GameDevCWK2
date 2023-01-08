@@ -12,6 +12,9 @@ public class NPCBaseClass : MonoBehaviour
 
     private Dialogue currentDialogue;
     private bool canInteract = false;
+    private bool facingRight = true;
+
+    private Transform player;
 
     protected string playerPath = "Pacifist";
 
@@ -20,9 +23,10 @@ public class NPCBaseClass : MonoBehaviour
         // Check which events have occured and set correct dialogue accordingly.
         string[] sentences = { "sentence 1", "sentence 2" };
         SetDialogue(new Dialogue(sentences, "default"));
+        player = FindObjectOfType<Player>().transform;
     }
 
-    public void TriggerDialogue() {
+    public virtual void TriggerDialogue() {
         DialogueManager.current.StartDialogue(currentDialogue);
         greetingAudio.Play();
         StoryEngine.current.TriggerEvent("TalkedTo" + characterName);
@@ -45,12 +49,17 @@ public class NPCBaseClass : MonoBehaviour
         if (canInteract && Input.GetButtonDown("Interact")) {
             TriggerDialogue();
         }
+        if (player.position.x < transform.position.x) {
+            FaceLeft();
+        } else {
+            FaceRight();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             canInteract = true;
-            InteractIcon.current.Bind(this.gameObject);
+            InteractIcon.current.Bind(transform);
         }
     }
 
@@ -59,5 +68,30 @@ public class NPCBaseClass : MonoBehaviour
             canInteract = false;
             InteractIcon.current.UnBind();
         }
+    }
+
+    public void Flip() {
+        // Switch the way the player is labelled as facing.
+        facingRight = !facingRight;
+
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+
+    public void FaceLeft() {
+        if (facingRight) {
+            Flip();
+        }
+    }
+
+    public void FaceRight() {
+        if (!facingRight) {
+            Flip();
+        }
+    }
+    private void OnDestroy() {
+        StoryEngine.current.EventOccured -= EventHappened;
     }
 }

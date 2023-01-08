@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public float health = 0;
 
     public int maxRage = 100;
-    public int rage = 0;
+    public static int rage = 0;
 
     
     public GameObject healthBarPrefab;
@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
 
     private void Awake() {
         current = this;
+    }
+
+    public static void ResetValues() {
+        rage = 0;
     }
 
     private float horizontal = 0f;
@@ -62,8 +66,12 @@ public class Player : MonoBehaviour
     void Start() {
         if (StoryEngine.current.HasOccured("PacifistChoice")) {
             PacifistMode();
-        } else {
+        } else if (StoryEngine.current.HasOccured("ViolentChoice")) {
             ViolentMode();
+        } else if (SceneManager.GetActiveScene().name == "CastleScene") {
+            ViolentMode();
+        } else if (SceneManager.GetActiveScene().name == "ForestScene") {
+            PacifistMode();
         }
         backgroundMusic.Play();
         attackCollider.enabled = false;
@@ -72,6 +80,9 @@ public class Player : MonoBehaviour
         healthBar = Instantiate(healthBarPrefab, worldCanvas.transform).GetComponent<HealthBar>();
         healthBar.SetMaxHealth(Mathf.FloorToInt(health));
         StoryEngine.current.EventOccured += EventOccured;
+    }
+    private void OnDestroy() {
+        StoryEngine.current.EventOccured -= EventOccured;
     }
 
     void EventOccured(String eventType) {
@@ -95,6 +106,7 @@ public class Player : MonoBehaviour
             Destroy(rageMeter.gameObject);
             rage = 0;
         }
+        transform.localScale = new Vector3(3, 3, 0);
 
         canDoubleJump = false;
         canAttack = false;
@@ -111,12 +123,12 @@ public class Player : MonoBehaviour
         if (timer != null) {
             Destroy(timer.gameObject);
         }
+        transform.localScale = new Vector3(4, 4, 0);
         canDoubleJump = true;
         canAttack = true;
         canWallClimb = false;
         canHide = false;
         controller.changeSettings(canDoubleJump, canWallClimb);
-        rage = 0;
         GameObject canvas = GameObject.Find("Canvas");
         rageMeter = Instantiate(rageMeterPrefab, canvas.transform).GetComponent<HealthBar>();
         rageMeter.SetMaxHealth(maxRage);

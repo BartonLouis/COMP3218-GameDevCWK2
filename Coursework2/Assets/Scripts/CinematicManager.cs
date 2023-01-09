@@ -18,6 +18,9 @@ public class CinematicManager : MonoBehaviour
 
 
     public void Start() {
+        timeline1.time = 0;
+        timelineOnDefendFriend.time = 0;
+        timelineOnHide.time = 0;
         timeline1.Play();
     }
     public void Defend() {
@@ -35,6 +38,7 @@ public class CinematicManager : MonoBehaviour
     }
 
     public void Next() {
+
         if (hiding) {
             SceneManager.LoadScene(SceneToLoadForHide);
         } else if (defending) {

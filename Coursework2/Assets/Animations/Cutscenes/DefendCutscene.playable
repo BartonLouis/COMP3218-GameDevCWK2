@@ -348,7 +348,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: 0.01666666666666683
     m_PreExtrapolationTime: 0.016666666666666666
-    m_DisplayName: PlayerAttacking
+    m_DisplayName: PlayerAttackingNoEvents
   - m_Version: 1
     m_Start: 1.0333333333333334
     m_ClipIn: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
     m_PreExtrapolationTime: 0
-    m_DisplayName: PlayerHit
+    m_DisplayName: PlayerHitNoEvents
   m_Markers:
     m_Objects: []
   m_InfiniteClipPreExtrapolation: 0
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: 9835799d14b74964d96f354f65491b5d, type: 2}
+  m_Clip: {fileID: 7400000, guid: 288259e814c6d3e41b8e609859376052, type: 2}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: a084301697285c94bbce84eff1c69e5e, type: 2}
+  m_Clip: {fileID: 7400000, guid: 40a6ae76d6be4054785c11f7d12e6002, type: 2}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1

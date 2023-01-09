@@ -114,6 +114,7 @@ public class SceneController : MonoBehaviour
     }
 
     public void MainMenu() {
+        UnPause();
         SceneManager.LoadScene("MainMenu");
     }
 

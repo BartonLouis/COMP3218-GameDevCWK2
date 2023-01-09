@@ -73,6 +73,9 @@ public class Player : MonoBehaviour
         } else if (SceneManager.GetActiveScene().name == "ForestScene") {
             PacifistMode();
         }
+        if (rage == maxRage) {
+            StoryEngine.current.TriggerEvent("RageBarFilled");
+        }
         backgroundMusic.Play();
         attackCollider.enabled = false;
         health = maxHealth;

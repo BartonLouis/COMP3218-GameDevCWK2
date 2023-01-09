@@ -17,6 +17,10 @@ public class Timer : MonoBehaviour
         if (!started) {
             timeRemaining = startTime;
             started = true;
+        } else if (timeRemaining <= 0) {
+            hasFinished = true;
+            timeRemaining = 0;
+            StoryEngine.current.TriggerEvent("TimerRanOut");
         }
     }
 

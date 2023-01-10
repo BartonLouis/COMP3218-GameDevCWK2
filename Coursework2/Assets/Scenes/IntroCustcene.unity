@@ -2513,7 +2513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Patrick and Louis Present:'
+  m_text: 'Patrik and Louis Present:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f66310cf40727f24b9f5b8034c9a5526, type: 2}
   m_sharedMaterial: {fileID: 6594168600739908850, guid: f66310cf40727f24b9f5b8034c9a5526, type: 2}
